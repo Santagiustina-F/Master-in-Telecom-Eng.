@@ -1,0 +1,1 @@
+g++ -o test.o -I/nfsd/opt/opencv-3.3.1/include/ -L/nfsd/opt/opencv-3.3.1/lib/ -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc lab1_rgb.cpp

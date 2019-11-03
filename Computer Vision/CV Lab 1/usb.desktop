@@ -1,0 +1,21 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Comment[en_US]=USB key
+Comment=Chiavetta USB
+Exec=thunar MyShares/usb
+GenericName[en_US]=USB
+GenericName=USB
+Icon=drive-removable-media-usb
+MimeType=
+Name[en_US]=USB
+Name=USB
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
