@@ -1,0 +1,3 @@
+I- good data visualization
+II- feature selection _ random forest makes it useless ?
+III-classification approach -why is it a good idea to use Random Forest ?
