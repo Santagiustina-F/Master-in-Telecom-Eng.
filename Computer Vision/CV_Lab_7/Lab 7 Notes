@@ -1,0 +1,10 @@
+Up to opencv 3.5 I have to manually apply the threshold to YOLO bounding boxes confidence (use if...). The threshold is contained at the end of the configuration file yolo-voc.cfg.
+
+include ffmpeg opencv library to read the video
+
+negatives_all.txt
+
+positives_all.vec
+
+
+

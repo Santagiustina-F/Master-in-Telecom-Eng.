@@ -1,0 +1,43 @@
+Up to opencv 3.5 I have to manually apply the threshold to YOLO bounding boxes confidence (use if...). 
+The threshold is contained at the end of the configuration file yolo-voc.cfg.
+
+
+include ffmpeg opencv library to read the video
+
+
+negatives_all.txt
+
+
+positives_all.vec
+
+
+Comands : 
+
+
+
+opencv_traincascade -data cascade_training -vec positives_all.vec -bg negatives_all.txt  -numStages 8 -w 24 -h 24 -numPos 1000 -numNeg 1370
+
+
+
+cmake CMakeLists.txt
+
+
+
+make -f Makefile
+
+
+
+LD_LIBRARY_PATH=/workspace/opencv/lib/ ./lab7_test -cascade_xml=cascade.xml -yolo_cfg=yolo-voc.cfg -yolo_weights=yolo-voc.weights -yolo_confidence=0.15
+
+
+
+Notes : 
+
+
+
+
+Firstly the YOLO detector showed many wrong dections, but just because I forgot to pass the threshold.
+
+The cars are not always detected, both for YOLO and cascade detectors, the hardest to detect are those on the left highway. I can see three reasons for this : the training was done with only car rear views, the car on the left are smaller and thus less defined, the car on the left are seen from a more angulated perspective. However from when a car enters the viewfield to when it exists it is almost always detected in at least one frame. So an application like car counting or plate number recognition could work (if higher esolution images were provided). With the suggested threshold of 0.15 there are almost no false detections left in YOLO, only on remains in many frames : box labbeled train nearly as big as the frame appears, I suppose that maybe the neural network is mislead by the two guardrails separing the two sides of the highway, which may look like the tracks of a railway (probably present in each "train" training dataset).  
+
+
