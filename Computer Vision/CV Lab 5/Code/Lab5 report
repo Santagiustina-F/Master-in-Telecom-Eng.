@@ -1,0 +1,28 @@
+Lessons Learned : 
+
+You cannot just declare a OutputArray variable and pass it to a method that asks for a an OutputArray to write on. For instance in detectAndCompute (InputArray image, InputArray mask, std::vector< KeyPoint > &keypoints, OutputArray descriptors, bool useProvidedKeypoints=false) I have finally understood that I had to pass a cv::Mat as descriptors.
+
+References must always be initialized when declared. Initialization is also necessary for all the variables inside the definition of "struct", which is very helpful to group outputs of a method into a single object.
+
+Printing variables values to standard output can be very helpful in debugging. I noticed in this way that my matches looked so bad because I had actually passed by errors the descriptors of the same image's features to the matcher twice... As keypoints were different it was not straightforward to notice by looking at drawMatches() output image, but by printing DMatch.trainIdx, DMatch.queryIdx and DMatch.distance the first two appeared to be always identical and the third always equal to zero.
+
+When fitering the matches, it may happen that we exclude all of them, especially if min_dist = 0 which is not so unlikely when using the Hamming distance between ORB descriptors.
+The visualization of the filtered matches is not stable for reasons yet unknown to me so I avoided to display the filtered matches but I still use them.
+
+The method warpPerspective() allow to apply an homography to an image, by passing the inverse of the previously identified homography matrix we can thus reharmonize the viewpoint of two different images.
+
+  
+
+Execution comands:
+
+LD_LIBRARY_PATH=/workspace/opencv/lib/ ./a.out "/home/francesco/Desktop/Computer Vision/CV Lab 5/kitchen/*.bmp" 66 5
+
+LD_LIBRARY_PATH=/workspace/opencv/lib/ ./a.out "/home/francesco/Desktop/Computer Vision/CV Lab 5/dolomites/*.png" 54 5
+
+LD_LIBRARY_PATH=/workspace/opencv/lib/ ./a.out "/home/francesco/Desktop/Computer Vision/CV Lab 5/lab/*.bmp" 66 5
+
+
+
+
+
+ 
